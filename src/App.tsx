@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+
+import { CreateStoryRoute } from './components/CreateStoryRoute';
+import { ListStoriesRoute } from './components/ListStoriesRoute';
+import React from 'react';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <nav> <Link to="/saved">See Saved Stories</Link> </nav>
+        <nav> <Link to="/create">Create a New Story</Link> </nav>
+        <h1>GC Mad Libs</h1>
+
+        <Switch>
+          <Route path="/saved">
+            <ListStoriesRoute />
+          </Route>
+          <Route path="/create">
+            <CreateStoryRoute />
+          </Route>
+        </Switch>
+      </Router>
+    </div >
   );
 }
 
